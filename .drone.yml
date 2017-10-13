@@ -1,0 +1,12 @@
+build:
+  image: docker.finogeeks.club/build/gradle:4.1
+  pull: true
+  commands:
+    - gradle clean assemble
+
+publish:
+  docker:
+    repo: finochat/kotlin-vertx
+    when:
+      branch: master
+      event: [push, pull_request]

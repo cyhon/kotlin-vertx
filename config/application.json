@@ -1,0 +1,7 @@
+{
+    "rest.server.http.port": 8080,
+    "mongo.db" : "kotlin-vertx",
+    "mongo.cluster.domain": "localhost",
+    "mongo.cluster.port": 27017,
+    "mongo.cluster.auth": ""
+}
