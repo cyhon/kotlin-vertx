@@ -14,6 +14,7 @@ fun BasicRouter(vertx: Vertx, handlerFactory: NaiveHandlerFactory) : Router {
     router.route().handler(BodyHandler.create())
 
     router.get("/demo/rx").handler(handlerFactory.demoHandlerRx)
+    router.get("/demo/co").handler(handlerFactory.demoHandlerCo)
 
     return router
 }

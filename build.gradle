@@ -37,6 +37,7 @@ dependencies {
     compile "io.vertx:vertx-mongo-client:$vertx_version"
     compile "io.vertx:vertx-rx-java2:$vertx_version"
     compile "io.vertx:vertx-config:$vertx_version"
+    compile "io.vertx:vertx-lang-kotlin-coroutines:$vertx_version"
 
     compile "org.slf4j:slf4j-api:1.7.25"
     compile "org.slf4j:slf4j-log4j12:1.7.25"
