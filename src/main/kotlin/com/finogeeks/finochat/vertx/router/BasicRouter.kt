@@ -13,7 +13,7 @@ fun BasicRouter(vertx: Vertx, handlerFactory: NaiveHandlerFactory) : Router {
     val router = Router.router(vertx)
     router.route().handler(BodyHandler.create())
 
-//    router.get("/api/v1/register").handler(handlerFactory.registerHandler)
+    router.get("/demo/rx").handler(handlerFactory.demoHandlerRx)
 
     return router
 }

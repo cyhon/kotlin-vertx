@@ -15,9 +15,9 @@ import io.vertx.ext.web.RoutingContext
  * Created by hetiu 2017/9/1.<br/>
  */
 
-abstract class AbstractHandler : Handler<RoutingContext> {
+abstract class AbstractHandlerRx : Handler<RoutingContext> {
 
-    private val LOG = LoggerFactory.getLogger("AbstractHandler")
+    private val LOG = LoggerFactory.getLogger("AbstractHandlerRx")
 
     @Inject @Named("NonBlockingScheduler") lateinit var vertxRxScheduler: Scheduler
 
