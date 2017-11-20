@@ -1,6 +1,6 @@
 package com.finogeeks.finochat.vertx
 
-import com.finogeeks.finochat.vertx.core.exp.RxHelper
+import io.vertx.reactivex.RxHelper
 import com.finogeeks.finochat.vertx.handler.NaiveHandlerFactory
 import com.google.inject.AbstractModule
 import com.google.inject.name.Names

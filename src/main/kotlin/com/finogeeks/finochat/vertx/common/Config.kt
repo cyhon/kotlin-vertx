@@ -22,7 +22,7 @@ fun getConfig(vertx: Vertx): Future<JsonObject> {
 
     return ConfigRetriever.getConfigAsFuture(ConfigRetriever.create(vertx, options))
             .compose {
-                if (null == it.getString("mongo.connstr")) {
+                if (it.getString("mongo.connstr", "").isEmpty()) {
                     val auth = it.getString("mongo.cluster.auth", "")
                     val port = it.getInteger("mongo.cluster.port", 27017)
                     val addrs = Inet4Address.getAllByName(it.getString("mongo.cluster.domain"))
