@@ -50,7 +50,7 @@ dependencies {
     compile "org.funktionale:funktionale-all:1.1"
     compile "com.finogeeks.monitor.client:vertx:1.0.0"
 
-    testCompile "io.vertx:vertx-unit:3.3.3"
+    testCompile "io.vertx:vertx-unit:$vertx_version"
     testCompile "junit:junit:4.12"
     testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0"
 }
