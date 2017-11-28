@@ -19,19 +19,25 @@ abstract class AbstractHandlerRx : Handler<RoutingContext> {
 
     private val LOG = LoggerFactory.getLogger("AbstractHandlerRx")
 
-    @Inject @Named("NonBlockingScheduler") lateinit var vertxRxScheduler: Scheduler
+    @Inject
+    @Named("NonBlockingScheduler") lateinit var vertxRxScheduler: Scheduler
 
     abstract fun call(context: RoutingContext): Single<CommonResponse>
 
     override fun handle(context: RoutingContext) {
         this.call(context)
-            .subscribeOn(vertxRxScheduler)
-            .subscribeBy(
-                onSuccess = { context.response().setStatusCode(it.status).end(it.toString()) },
-                onError = {
-                    LOG.error(it.message, it)
-                    context.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
-                }
-            )
+                .subscribeOn(vertxRxScheduler)
+                .subscribeBy(
+                        onSuccess = {
+                            val response = context.response()
+                            response.statusCode = it.status
+                            it.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
+                            response.end(it.toString())
+                        },
+                        onError = {
+                            LOG.error(it.message, it)
+                            context.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
+                        }
+                )
     }
 }

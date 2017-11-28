@@ -16,6 +16,17 @@ enum class ErrorCode(val message: String) {
 
 data class CommonResponse(val status: Int = 200, private val reply: Any = JsonObject()) {
 
+    var header: HashMap<String, String>? = null
+
+    fun addHeader(key: String, value: String): CommonResponse {
+        if (header == null) {
+            header = hashMapOf(key to value)
+        } else {
+            header?.put(key, value)
+        }
+        return this
+    }
+
     override fun toString(): String {
         return reply.toString()
     }

@@ -20,8 +20,11 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
     override fun handle(ctx: RoutingContext) {
         launch(ctx.vertx().dispatcher()) {
             try {
-                val resp = call(ctx)
-                ctx.response().setStatusCode(resp.status).end(resp.toString())
+                val respDTO = call(ctx)
+                val response = ctx.response()
+                response.statusCode = respDTO.status
+                respDTO.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
+                response.end(respDTO.toString())
             } catch(e: Exception) {
                 LOG.error(e.message, e)
                 ctx.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
