@@ -40,7 +40,10 @@ dependencies {
     compile "io.vertx:vertx-lang-kotlin-coroutines:$vertx_version"
 
     compile "org.slf4j:slf4j-api:1.7.25"
-    compile "org.slf4j:slf4j-log4j12:1.7.25"
+    compile "org.apache.logging.log4j:log4j-api:2.9.1"
+    compile "org.apache.logging.log4j:log4j-core:2.9.1"
+    compile "org.apache.logging.log4j:log4j-slf4j-impl:2.9.1"
+//    compile group: 'com.lmax', name: 'disruptor', version: '3.3.7' // log4j2的async-logger依赖disruptor，若使用需开启
     compile "com.google.inject:guice:4.1.0"
     compile "org.mongodb.morphia:morphia:1.3.2"
     compile "io.reactivex.rxjava2:rxkotlin:2.1.0"
