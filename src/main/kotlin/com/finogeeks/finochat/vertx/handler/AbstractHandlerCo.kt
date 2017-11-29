@@ -2,6 +2,7 @@ package com.finogeeks.finochat.vertx.handler
 
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import com.finogeeks.finochat.vertx.dto.ErrorCode
+import com.finogeeks.finochat.vertx.router.json
 import io.vertx.core.Handler
 import io.vertx.core.logging.LoggerFactory
 import io.vertx.ext.web.RoutingContext
@@ -24,7 +25,7 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
                 val response = ctx.response()
                 response.statusCode = respDTO.status
                 respDTO.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
-                response.end(respDTO.toString())
+                response.json().end(respDTO.toString())
             } catch(e: Exception) {
                 LOG.error(e.message, e)
                 ctx.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())

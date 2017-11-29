@@ -16,6 +16,7 @@ plugins {
 }
 
 apply plugin: 'kotlin'
+kotlin { experimental { coroutines 'enable' } }
 
 group 'com.finogeeks.finochat'
 version '1.0-SNAPSHOT'
@@ -30,13 +31,17 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-runtime:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     compile "io.vertx:vertx-web:$vertx_version"
     compile "io.vertx:vertx-web-client:$vertx_version"
     compile "io.vertx:vertx-mongo-client:$vertx_version"
     compile "io.vertx:vertx-rx-java2:$vertx_version"
     compile "io.vertx:vertx-config:$vertx_version"
-    compile "io.vertx:vertx-lang-kotlin-coroutines:$vertx_version"
+    compile("io.vertx:vertx-lang-kotlin-coroutines:$vertx_version") {
+        exclude module: 'kotlin-stdlib-jre7'
+        exclude module: 'kotlin-stdlib-jre8'
+    }
 
     compile "org.slf4j:slf4j-api:1.7.25"
     compile "org.apache.logging.log4j:log4j-api:2.9.1"

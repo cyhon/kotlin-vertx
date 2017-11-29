@@ -2,6 +2,7 @@ package com.finogeeks.finochat.vertx.handler
 
 import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.dto.CommonResponse
+import com.finogeeks.finochat.vertx.router.json
 import com.google.inject.Inject
 import com.google.inject.name.Named
 import io.reactivex.Scheduler
@@ -32,11 +33,11 @@ abstract class AbstractHandlerRx : Handler<RoutingContext> {
                             val response = context.response()
                             response.statusCode = it.status
                             it.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
-                            response.end(it.toString())
+                            response.json().end(it.toString())
                         },
                         onError = {
                             LOG.error(it.message, it)
-                            context.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
+                            context.response().setStatusCode(500).json().end(ErrorCode.FC_ERROR.toString())
                         }
                 )
     }
