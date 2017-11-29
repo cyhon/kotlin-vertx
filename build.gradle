@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.1.61'
+    ext.kotlin_version = '1.2.0'
     ext.vertx_version = '3.5.0'
 
     repositories {
@@ -15,10 +15,7 @@ plugins {
     id 'com.sourcemuse.mongo' version '1.0.0'
 }
 
-apply plugin: 'java'
 apply plugin: 'kotlin'
-
-kotlin { experimental { coroutines 'enable' } }
 
 group 'com.finogeeks.finochat'
 version '1.0-SNAPSHOT'
