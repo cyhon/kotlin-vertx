@@ -7,9 +7,12 @@ import io.vertx.ext.web.RoutingContext
 /**
  * Created by hetiu 2017/11/20.<br/>
  */
+
+data class TestResponse(val test: String)
+
 class DemoHandlerCo: AbstractHandlerCo() {
 
     override suspend fun call(context: RoutingContext): CommonResponse {
-        return CommonResponse(200, JsonObject().put("test", "coroutines"))
+        return CommonResponse(200, TestResponse("coroutines"))
     }
 }
