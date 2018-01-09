@@ -11,6 +11,6 @@ import io.vertx.ext.web.RoutingContext
 class DemoHandlerRx: AbstractHandlerRx() {
 
     override fun call(context: RoutingContext): Single<CommonResponse> {
-        return Single.just(CommonResponse(200, TestResponse("rx")))
+        return Single.just(CommonResponse(200, TestResponse("rx", context.get("traceId"))))
     }
 }
