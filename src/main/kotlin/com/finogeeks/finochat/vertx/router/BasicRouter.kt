@@ -19,17 +19,15 @@ fun basicRouter(vertx: Vertx, handlerFactory: NaiveHandlerFactory) : Router {
     router.route().handler(LoggerHandler.create(LoggerFormat.TINY))
     router.route().handler(BodyHandler.create())
     router.route().handler(TraceIdResponseHandler())
-
-    // 业务路由
-    router.setBusinessRouter(handlerFactory)
-
-    router.route().handler { ctx ->
+    router.route().last().handler { ctx ->
         ctx.response()
             .setStatusCode(404)
             .json()
             .end(ErrorCode.FC_NOT_FOUND.toString())
     }
 
+    // 业务路由
+    router.setBusinessRouter(handlerFactory)
     return router
 }
 
