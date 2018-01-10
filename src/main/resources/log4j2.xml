@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <!--<Property name="log-pattern">%d{yyyy-MM-dd HH:mm:ss} |- %highlight{%5p}{TRACE=blue, DEBUG=blue, INFO=green,-->
-        <!--WARN=yellow, ERROR=red, FATAL=red} in %style{%C{1}:%L}{cyan} [%style{%t}{magenta}] - %m%n-->
-        <!--</Property>-->
         <Property name="log-pattern">[%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%5p}{TRACE=blue, DEBUG=blue, INFO=green,
             WARN=yellow, ERROR=red, FATAL=red} %style{%C{1}}{cyan} %X{traceId}]: %m%n
         </Property>
