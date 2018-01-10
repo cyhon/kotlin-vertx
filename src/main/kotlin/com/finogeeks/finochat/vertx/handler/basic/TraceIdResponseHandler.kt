@@ -2,6 +2,7 @@ package com.finogeeks.finochat.vertx.handler.basic
 
 import io.vertx.core.Handler
 import io.vertx.ext.web.RoutingContext
+import org.apache.logging.log4j.ThreadContext
 import java.util.*
 
 /**
@@ -19,6 +20,8 @@ class TraceIdResponseHandler : Handler<RoutingContext> {
         ctx.addHeadersEndHandler {
             ctx.response().putHeader(X_TRACE_ID, traceId)
         }
+
+        ThreadContext.put("traceId", traceId)
 
         ctx.next()
     }
