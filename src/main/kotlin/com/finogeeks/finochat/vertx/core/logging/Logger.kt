@@ -2,8 +2,6 @@ package com.finogeeks.finochat.vertx.core.logging
 
 import com.finogeeks.finochat.vertx.common.TraceId
 import io.vertx.core.logging.Logger
-import org.apache.logging.log4j.ThreadContext
-import sun.rmi.runtime.Log
 
 /**
  * Created by hetiu 2018/1/10.<br/>
