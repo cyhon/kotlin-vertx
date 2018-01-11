@@ -9,46 +9,46 @@ import io.vertx.core.logging.Logger
 
 const val formater: String = "{} - {}"
 
-fun Logger.infoX(traceId: TraceId, message: Any) {
+fun Logger.infoX(traceId: TraceId, message: Any?) {
     this.info(formater, traceId.id, message)
 }
 
-fun Logger.infoX(traceId: TraceId, message: Any, t: Throwable) {
+fun Logger.infoX(traceId: TraceId, message: Any?, t: Throwable?) {
     this.info(formater, t, traceId.id, message)
 }
 
 
-fun Logger.debugX(traceId: TraceId, message: Any) {
+fun Logger.debugX(traceId: TraceId, message: Any?) {
     this.debug(formater, traceId.id, message)
 }
 
-fun Logger.debugX(traceId: TraceId, message: Any, t: Throwable) {
+fun Logger.debugX(traceId: TraceId, message: Any?, t: Throwable?) {
     this.debug(formater, t, traceId.id, message)
 }
 
 
-fun Logger.errorX(traceId: TraceId, message: Any) {
+fun Logger.errorX(traceId: TraceId, message: Any?) {
     this.error(formater, traceId.id, message)
 }
 
-fun Logger.errorX(traceId: TraceId, message: Any, t: Throwable) {
+fun Logger.errorX(traceId: TraceId, message: Any?, t: Throwable?) {
     this.error(formater, t, traceId.id, message)
 }
 
 
-fun Logger.warnX(traceId: TraceId, message: Any) {
+fun Logger.warnX(traceId: TraceId, message: Any?) {
     this.warn(formater, traceId.id, message)
 }
 
-fun Logger.warnX(traceId: TraceId, message: Any, t: Throwable) {
+fun Logger.warnX(traceId: TraceId, message: Any?, t: Throwable?) {
     this.warn(formater, t, traceId.id, message)
 }
 
 
-fun Logger.traceX(traceId: TraceId, message: Any) {
+fun Logger.traceX(traceId: TraceId, message: Any?) {
     this.trace(formater, traceId.id, message)
 }
 
-fun Logger.traceX(traceId: TraceId, message: Any, t: Throwable) {
+fun Logger.traceX(traceId: TraceId, message: Any, t: Throwable?) {
     this.trace(formater, t, traceId.id, message)
 }

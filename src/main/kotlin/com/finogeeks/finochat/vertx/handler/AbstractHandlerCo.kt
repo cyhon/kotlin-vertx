@@ -1,5 +1,6 @@
 package com.finogeeks.finochat.vertx.handler
 
+import com.finogeeks.finochat.vertx.core.logging.errorX
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.router.json
@@ -27,7 +28,7 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
                 respDTO.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
                 response.json().end(respDTO.toString())
             } catch(e: Exception) {
-                LOG.error(e.message, e)
+                LOG.errorX(ctx.get("traceId"), e.message, e)
                 ctx.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
             }
         }
