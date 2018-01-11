@@ -2,12 +2,13 @@ package com.finogeeks.finochat.vertx.dto
 
 import io.vertx.core.json.Json
 import io.vertx.core.json.JsonObject
+import java.net.InetAddress
 
 /**
  * Created by hetiu 2017/8/22.<br/>
  */
 
-const val SERVICE_NAME = "kotlin-vertx"
+val serviceName: String = InetAddress.getLocalHost().hostName
 
 enum class ErrorCode(val message: String) {
     FC_NOT_FOUND("请求的API不存在"),
@@ -17,7 +18,7 @@ enum class ErrorCode(val message: String) {
         return JsonObject(mapOf(
             "errcode" to this.name,
             "error" to this.message,
-            "service" to SERVICE_NAME
+            "service" to serviceName
         )).toString()
     }
 }
