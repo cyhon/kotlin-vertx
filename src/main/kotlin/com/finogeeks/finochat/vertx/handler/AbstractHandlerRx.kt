@@ -17,7 +17,7 @@ import io.vertx.ext.web.RoutingContext
  * Created by hetiu 2017/9/1.<br/>
  */
 
-@Deprecated
+@Deprecated("rx-handler is deprecated due to lack of tracing support", ReplaceWith("AbstractHandlerCo"))
 abstract class AbstractHandlerRx : Handler<RoutingContext> {
 
     private val LOG = LoggerFactory.getLogger("AbstractHandlerRx")
