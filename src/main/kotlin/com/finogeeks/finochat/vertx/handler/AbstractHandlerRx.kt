@@ -17,6 +17,7 @@ import io.vertx.ext.web.RoutingContext
  * Created by hetiu 2017/9/1.<br/>
  */
 
+@Deprecated
 abstract class AbstractHandlerRx : Handler<RoutingContext> {
 
     private val LOG = LoggerFactory.getLogger("AbstractHandlerRx")
