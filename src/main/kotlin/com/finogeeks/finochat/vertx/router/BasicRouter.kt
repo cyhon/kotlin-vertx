@@ -5,7 +5,7 @@ package com.finogeeks.finochat.vertx.router
  */
 import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.handler.NaiveHandlerFactory
-import com.finogeeks.finochat.vertx.handler.basic.TraceIdResponseHandler
+import com.finogeeks.finochat.vertx.handler.basic.TraceIdHandler
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.ext.web.Router
@@ -18,7 +18,7 @@ fun basicRouter(vertx: Vertx, handlerFactory: NaiveHandlerFactory) : Router {
 
     router.route().handler(LoggerHandler.create(LoggerFormat.TINY))
     router.route().handler(BodyHandler.create())
-    router.route().handler(TraceIdResponseHandler())
+    router.route().handler(TraceIdHandler())
     router.route().last().handler { ctx ->
         ctx.response()
             .setStatusCode(404)

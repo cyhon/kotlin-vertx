@@ -1,5 +1,6 @@
 package com.finogeeks.finochat.vertx.handler
 
+import com.finogeeks.finochat.vertx.core.getTraceId
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import io.reactivex.Single
 import io.vertx.core.json.JsonObject
@@ -16,6 +17,6 @@ class DemoHandlerRx: AbstractHandlerRx() {
     override fun call(context: RoutingContext): Single<CommonResponse> {
         LOG.info("rx test")
 
-        return Single.just(CommonResponse(200, TestResponse("rx", context.get("traceId"))))
+        return Single.just(CommonResponse(200, TestResponse("rx", context.getTraceId())))
     }
 }

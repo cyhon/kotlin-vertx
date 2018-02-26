@@ -7,6 +7,7 @@ import io.vertx.core.shareddata.SharedData
 import org.funktionale.option.Option
 import org.funktionale.option.Option.*
 
+@Deprecated("deprecate soon, no reason")
 object LockHelper {
 
     fun getLockWithTimeoutRx(vertx: Vertx, name: String, timeout: Long): Single<Option<Lock>> {

@@ -1,8 +1,7 @@
 package com.finogeeks.finochat.vertx.handler
 
-import com.finogeeks.finochat.vertx.core.logging.errorX
-import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.dto.CommonResponse
+import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.router.json
 import com.google.inject.Inject
 import com.google.inject.name.Named
@@ -23,7 +22,8 @@ abstract class AbstractHandlerRx : Handler<RoutingContext> {
     private val LOG = LoggerFactory.getLogger("AbstractHandlerRx")
 
     @Inject
-    @Named("NonBlockingScheduler") lateinit var vertxRxScheduler: Scheduler
+    @Named("NonBlockingScheduler")
+    lateinit var vertxRxScheduler: Scheduler
 
     abstract fun call(context: RoutingContext): Single<CommonResponse>
 
@@ -38,7 +38,7 @@ abstract class AbstractHandlerRx : Handler<RoutingContext> {
                             response.json().end(it.toString())
                         },
                         onError = {
-                            LOG.errorX(context.get("traceId"), it.message, it)
+                            LOG.error(it.message, it)
                             context.response().setStatusCode(500).json().end(ErrorCode.FC_ERROR.toString())
                         }
                 )

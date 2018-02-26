@@ -1,6 +1,8 @@
 package com.finogeeks.finochat.vertx.handler
 
-import com.finogeeks.finochat.vertx.core.logging.errorX
+import com.finogeeks.finochat.vertx.core.TraceIdRepo
+import com.finogeeks.finochat.vertx.core.TraceableCoroutineContext
+import com.finogeeks.finochat.vertx.core.getTraceId
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import com.finogeeks.finochat.vertx.dto.ErrorCode
 import com.finogeeks.finochat.vertx.router.json
@@ -20,8 +22,11 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
     abstract suspend fun call(context: RoutingContext): CommonResponse
 
     override fun handle(ctx: RoutingContext) {
-        launch(ctx.vertx().dispatcher()) {
+        // FIXME
+        launch(TraceableCoroutineContext(ctx.getTraceId(), ctx.vertx().dispatcher())) {
             try {
+                println("in launch: tID ${TraceIdRepo.getCurrentTraceId()}")
+                println("in launch: tId in ctx ${ctx.getTraceId()}")
                 val respDTO = call(ctx)
                 val response = ctx.response()
                 response.statusCode = respDTO.status
@@ -29,7 +34,7 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
                 response.json()
                         .end(respDTO.toString())
             } catch (e: Exception) {
-                _log.errorX(ctx.get("traceId"), e.message, e)
+                _log.error(e.message, e)
                 ctx.response()
                         .json()
                         .setStatusCode(500)

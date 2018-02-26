@@ -10,12 +10,13 @@ import java.util.*
  */
 
 const val X_TRACE_ID: String = "x-trace-id"
+const val TRACE_ID_CTX_KEY: String = "traceId"
 
-class TraceIdResponseHandler : Handler<RoutingContext> {
+class TraceIdHandler : Handler<RoutingContext> {
 
     override fun handle(ctx: RoutingContext) {
         val traceId = ctx.request().getHeader(X_TRACE_ID) ?: UUID.randomUUID().toString()
-        ctx.put("traceId", TraceId(traceId))
+        ctx.put(TRACE_ID_CTX_KEY, traceId)
 
         ctx.addHeadersEndHandler {
             ctx.response().putHeader(X_TRACE_ID, traceId)
