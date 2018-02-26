@@ -15,7 +15,7 @@ import kotlinx.coroutines.experimental.launch
  */
 abstract class AbstractHandlerCo : Handler<RoutingContext> {
 
-    private val LOG = LoggerFactory.getLogger("AbstractHandlerCo")
+    private val _log = LoggerFactory.getLogger("AbstractHandlerCo")
 
     abstract suspend fun call(context: RoutingContext): CommonResponse
 
@@ -26,10 +26,14 @@ abstract class AbstractHandlerCo : Handler<RoutingContext> {
                 val response = ctx.response()
                 response.statusCode = respDTO.status
                 respDTO.header?.let { it.forEach { k, v -> response.putHeader(k, v) } }
-                response.json().end(respDTO.toString())
-            } catch(e: Exception) {
-                LOG.errorX(ctx.get("traceId"), e.message, e)
-                ctx.response().setStatusCode(500).end(ErrorCode.FC_ERROR.toString())
+                response.json()
+                        .end(respDTO.toString())
+            } catch (e: Exception) {
+                _log.errorX(ctx.get("traceId"), e.message, e)
+                ctx.response()
+                        .json()
+                        .setStatusCode(500)
+                        .end(ErrorCode.FC_ERROR.toString())
             }
         }
     }

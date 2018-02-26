@@ -10,4 +10,5 @@ import io.vertx.ext.web.Router
 fun Router.setBusinessRouter(handlerFactory: NaiveHandlerFactory) {
     this.get("/demo/rx").handler(handlerFactory.demoHandlerRx)
     this.get("/demo/co").handler(handlerFactory.demoHandlerCo)
+    this.get("/quote/co").handler(handlerFactory.quoteHandlerCo)
 }
