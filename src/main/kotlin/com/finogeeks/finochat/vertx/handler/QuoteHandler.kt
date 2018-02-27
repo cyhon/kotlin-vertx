@@ -1,7 +1,6 @@
 package com.finogeeks.finochat.vertx.handler
 
 import com.finogeeks.finochat.vertx.client.DemoHttpClient
-import com.finogeeks.finochat.vertx.core.TraceIdRepo
 import com.finogeeks.finochat.vertx.core.getTraceId
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import com.google.inject.Inject
@@ -21,9 +20,6 @@ class QuoteHandlerCo @Inject constructor(private val quoteCli: DemoHttpClient) :
 
     override suspend fun call(context: RoutingContext): CommonResponse {
         LOG.info("fetch quote demo: sh600300")
-
-        println("in biz handler: threadId ${Thread.currentThread().id}")
-        println("in biz handler: traceId ${TraceIdRepo.getCurrentTraceId()}")
 
         val quoteResult = quoteCli.getQuote("sh600300").await()
 

@@ -16,9 +16,6 @@ class TraceableCoroutineContext(private var traceId: String,
         private inline fun wrap(block: () -> Unit) {
             try {
                 TraceIdRepo.traceTL.set(traceId)
-
-                println("ready to resume: threadId ${Thread.currentThread().id}")
-                println("ready to resume: traceId $traceId")
                 block()
             } finally {
                 traceId = TraceIdRepo.traceTL.get()
