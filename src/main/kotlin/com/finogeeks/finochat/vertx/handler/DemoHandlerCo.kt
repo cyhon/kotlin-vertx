@@ -1,6 +1,5 @@
 package com.finogeeks.finochat.vertx.handler
 
-import com.finogeeks.finochat.vertx.common.TraceId
 import com.finogeeks.finochat.vertx.core.getTraceId
 import com.finogeeks.finochat.vertx.dto.CommonResponse
 import io.vertx.core.logging.LoggerFactory
